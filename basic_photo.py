@@ -36,7 +36,7 @@ camera = PiCamera()
 
 camera.resolution = (1920, 1080)
 camera.annotate_text_size = 55
-camera.annotate_foreground = Color('black')
+camera.annotate_foreground = Color('Black')
 camera.annotate_background = Color('White')
 camera.annotate_text = " Hive " + hiveNum + " " + dateStr + " "
 
