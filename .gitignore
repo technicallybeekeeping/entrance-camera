@@ -1,5 +1,6 @@
 # Don't put photos into git
 photos/*
+videos/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
