@@ -22,15 +22,38 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 Want to learn more?!? 
 See https://www.youtube.com/@TechnicallyBeekeeping or https://technicallybeekeeping.com
 """
-from picamera2 import Picamera2
-import datetime as dt
+# importing required modules 
+import os 
+import datetime 
 
-# Variables
-dateStr = dt.datetime.now().strftime('%Y-%m-%d_%H_%M_%S')
-path = "./photos/basic_photo_1-" + "-" + dateStr + ".jpg"
 
-# Camera
-cam = Picamera2()
-cam.start_and_capture_file(path, show_preview=False)
+# Path to look for photos
+PATH = "./photos"
+INCLUDE_ENDS_WITH = ".jpg"
+MAX_DAYS = 3
 
-# TODO: Let's build more AWESOMENESS ＼(^o^)／ in a future video https://www.youtube.com/@TechnicallyBeekeeping 
+# function to perform delete operation based on condition 
+def purge_old_photos(path, endswith, max_days): 
+    # loop to check all files one by one 
+    # os.walk returns 3 things: current path, files in the current path, and folders in the current path 
+    for (root,dirs,files) in os.walk(path, topdown=True): 
+        for f in files: 
+            if not f.endswith(endswith):
+                continue
+            # temp variable to store path of the file 
+            file_path = os.path.join(root,f) 
+            # get the timestamp, when the file was modified 
+            timestamp_of_file_modified = os.path.getmtime(file_path) 
+            # convert timestamp to datetime 
+            modification_date = datetime.datetime.fromtimestamp(timestamp_of_file_modified) 
+            # find the number of days when the file was modified 
+#            number_of_days = (datetime.datetime.now() - modification_date).days 
+#            if number_of_days > max_days: 
+            mins = (datetime.datetime.now() - modification_date).min
+            if mins > max_days:
+                # remove file 
+                os.remove(file_path) 
+                print(f" Delete : {f}") 
+
+# call function 
+purge_old_photos(PATH, INCLUDE_ENDS_WITH, MAX_DAYS)
