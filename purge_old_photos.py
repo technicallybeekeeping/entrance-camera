@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-""" This simple script takes a basic photo for the Raspberry Pi.
+""" Script to remove files beyond a specific amount of time.
 ___ ____ ____ _  _ _  _ _ ____ ____ _    _   _   _   ___  ____ ____ _  _ ____ ____ ___  _ _  _ ____
  |  |___ |    |__| |\ | | |    |__| |    |    \_/    |__] |___ |___ |_/  |___ |___ |__] | |\ | | __
  |  |___ |___ |  | | \| | |___ |  | |___ |___  |     |__] |___ |___ | \_ |___ |___ |    | | \| |__]
@@ -49,7 +49,7 @@ def purge_old_photos(path, endswith, max_days):
             # find the number of days when the file was modified 
 #            number_of_days = (datetime.datetime.now() - modification_date).days 
 #            if number_of_days > max_days: 
-            mins = (datetime.datetime.now() - modification_date).min
+            mins = (datetime.datetime.now() - modification_date).minutes
             if mins > max_days:
                 # remove file 
                 os.remove(file_path) 
