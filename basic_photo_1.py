@@ -31,6 +31,6 @@ path = "./photos/basic_photo_1-" + "-" + dateStr + ".jpg"
 
 # Camera
 cam = Picamera2()
-cam.start_and_capture_file(path)
+cam.start_and_capture_file(path, show_preview=False)
 
 # TODO: Let's build more AWESOMENESS ＼(^o^)／ in a future video https://www.youtube.com/@TechnicallyBeekeeping 

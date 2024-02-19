@@ -22,15 +22,24 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 Want to learn more?!? 
 See https://www.youtube.com/@TechnicallyBeekeeping or https://technicallybeekeeping.com
 """
-from picamera2 import Picamera2
+
+import time
 import datetime as dt
 
+from picamera2 import Picamera2
+from picamera2.outputs import FfmpegOutput
+from picamera2.encoders import H264Encoder, Quality
+
+
 # Variables
-dateStr = dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-path = "./photos/basic_video_1-" + "-" + dateStr + ".mp4"
+dateStr = dt.datetime.now().strftime('%Y-%m-%d_%H_%M_%S')
+path = "./videos/basic_video_1-" + "-" + dateStr + ".mp4"
 
 # Camera
+#path = "./videos/test-start_and_record_video.mp4"
+
 cam = Picamera2()
+
 cam.start_and_record_video(path, duration=5)
 
 # TODO: Let's build more AWESOMENESS ＼(^o^)／ in a future video https://www.youtube.com/@TechnicallyBeekeeping 
