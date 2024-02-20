@@ -30,7 +30,7 @@ import datetime
 # Path to look for photos
 PATH = "./photos"
 INCLUDE_ENDS_WITH = ".jpg"
-MAX_DAYS = 3
+MAX_DAYS = 1
 
 # function to perform delete operation based on condition 
 def purge_old_photos(path, endswith, max_days): 
@@ -47,13 +47,13 @@ def purge_old_photos(path, endswith, max_days):
             # convert timestamp to datetime 
             modification_date = datetime.datetime.fromtimestamp(timestamp_of_file_modified) 
             # find the number of days when the file was modified 
-#            number_of_days = (datetime.datetime.now() - modification_date).days 
-#            if number_of_days > max_days: 
-            mins = (datetime.datetime.now() - modification_date).minutes
-            if mins > max_days:
+            delta = (datetime.datetime.now() - modification_date)
+            if delta.days > max_days:
                 # remove file 
-                os.remove(file_path) 
-                print(f" Delete : {f}") 
+                print(f"    Delete : {f}, days old {delta.days}, max_days {max_days}")
+                os.remove(file_path)  
+            else:
+                print(f"!!! Do NOT Delete : {f}, days old {delta.days}, max_days {max_days}")
 
 # call function 
 purge_old_photos(PATH, INCLUDE_ENDS_WITH, MAX_DAYS)
