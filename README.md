@@ -1,7 +1,6 @@
 # entrance-camera-basic
 The basic setup for a DIY entrance camera.
 
----
 Want to learn more?!? 
 - [Technically Beekeeping YouTube](https://www.youtube.com/@TechnicallyBeekeeping) 
 - [Technically Beekeeping Site](https://technicallybeekeeping.com)

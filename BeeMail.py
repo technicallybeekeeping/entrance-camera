@@ -14,9 +14,9 @@ class BeeMail:
         self.subject = "Entrance Cam for Hive 1"
         self.body = "This is the body"
 
-    def myfunc(self):
-        print("Hello my name is " + self.subject)
-
+    def justTest(self):
+        return "hello"
+    
     def sendImage(self, fileName):
         with open(fileName, 'rb') as f:
             image_part = MIMEImage(f.read())
@@ -32,5 +32,5 @@ class BeeMail:
                 server.sendmail(self.sender_email, self.recipient_email, message.as_string())
 
 
-p1 = BeeMail()
-p1.sendImage("./photos/hive1.jpg")
+#p1 = BeeMail()
+#p1.sendImage("./photos/hive1.jpg")
