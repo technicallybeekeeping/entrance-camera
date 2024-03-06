@@ -4,7 +4,7 @@ Test the BeeMail class
 """
 
 import pytest
-from BeeMail import BeeMail
+from src import BeeMail
 
 
 # def test_sendImage():
