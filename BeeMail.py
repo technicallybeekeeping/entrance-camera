@@ -4,20 +4,15 @@ from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 
 
-
-
 class BeeMail:
-    def __init__(self):
-        self.sender_email = "REDACTED"
-        self.sender_password = "REDACTED"
-        self.recipient_email = "REDACTED"
-        self.subject = "Entrance Cam for Hive 1"
-        self.body = "This is the body"
+    def __init__(self, sender_email: str, sender_password: str, recipient_email: str, subject: str, body: str):
+        self.sender_email = sender_email
+        self.sender_password = sender_password
+        self.recipient_email = recipient_email
+        self.subject = subject
+        self.body = body
 
-    def justTest(self):
-        return "hello"
-    
-    def sendImage(self, fileName):
+    def sendImage(self, fileName: str):
         with open(fileName, 'rb') as f:
             image_part = MIMEImage(f.read())
             message = MIMEMultipart()
@@ -32,5 +27,6 @@ class BeeMail:
                 server.sendmail(self.sender_email, self.recipient_email, message.as_string())
 
 
-#p1 = BeeMail()
-#p1.sendImage("./photos/hive1.jpg")
+if __name__ == "__main__":
+    p1 = BeeMail("REDACTED", "REDACTED", "REDACTED", "This is the subject", "This is the body")
+    p1.sendImage("./photos/hive1.jpg")

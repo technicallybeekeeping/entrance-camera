@@ -1,11 +1,13 @@
+#!/usr/bin/env python
+"""
+Test the BeeMail class
+"""
+
 import pytest
 from BeeMail import BeeMail
 
-def test_justtest():
-    sut = BeeMail()
-    result = sut.justTest()
-    assert "hello" == result
 
-#def test_sendImage():
-#    p1 = BeeMail()
-    #p1.sendImage("./photos/hive1.jpg")
+# def test_sendImage():
+#     sut = BeeMail("REDACTED", "REDACTED", "REDACTED", "This is the subject", "This is the body")
+#     sut.sendImage("./photos/1.jpg")
+#     assert 1 == 1
