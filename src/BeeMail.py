@@ -5,7 +5,12 @@ from email.mime.image import MIMEImage
 
 
 class BeeMail:
-    def __init__(self, sender_email: str, sender_password: str, recipient_email: str, subject: str, body: str):
+    def __init__(self, 
+                 sender_email: str,
+                 sender_password: str,
+                 recipient_email: str,
+                 subject: str,
+                 body: str):
         self.sender_email = sender_email
         self.sender_password = sender_password
         self.recipient_email = recipient_email
@@ -24,9 +29,16 @@ class BeeMail:
             message.attach(image_part)
             with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
                 server.login(self.sender_email, self.sender_password)
-                server.sendmail(self.sender_email, self.recipient_email, message.as_string())
+                server.sendmail(self.sender_email,
+                                self.recipient_email,
+                                message.as_string())
 
 
 if __name__ == "__main__":
-    p1 = BeeMail("REDACTED", "REDACTED", "REDACTED", "This is the subject", "This is the body")
+    p1 = BeeMail("REDACTED",
+                 "REDACTED",
+                 "REDACTED",
+                 "This is the subject",
+                 "This is the body")
+    
     p1.sendImage("./photos/hive1.jpg")
