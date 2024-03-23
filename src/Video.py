@@ -4,19 +4,20 @@ Camera module for the Entrance
 import logging
 
 
-class BeePhoto:
+class Video:
     def __init__(self, cam=None, formatter=None):
         name = formatter.get_file_name()
-        self.path = "../photos/" + name + ".jpg"
+        self.path = "../videos/" + name + ".mp4"
         self.cam = cam
 
-    def capture_photo(self):
+    def capture(self):
         try:
             logging.info("path=" + self.path)
-            self.cam.start_and_capture_file(self.path, show_preview=False)
+            self.cam.start_and_capture_file(self.path, duration=5)
             logging.info("Capture successful: " + self.path)
         except Exception as ex:
-            template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+            template = "Exception of type {0} occurred in Video capture." \
+                + "Arguments:\n{1!r}"
             message = template.format(type(ex).__name__, ex.args)
             logging.error(message)
             return False
@@ -26,5 +27,5 @@ class BeePhoto:
 if __name__ == "__main__":
     from picamera2 import Picamera2
     import FileNameFormatter
-    sut = BeePhoto(cam=Picamera2(),formatter=FileNameFormatter())
-    sut.capture_photo()
+    sut = Video(cam=Picamera2(), formatter=FileNameFormatter())
+    sut.capture()

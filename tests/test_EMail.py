@@ -4,10 +4,10 @@ Test the BeeMail class
 """
 
 import pytest
-from src import BeeMail
+from src import EMail
 
 
-# def test_sendImage():
+# def test_sendPhoto():
 #     sut = BeeMail("REDACTED", "REDACTED", "REDACTED", "This is the subject", "This is the body")
-#     sut.sendImage("./photos/1.jpg")
+#     sut.sendPhoto("./photos/1.jpg")
 #     assert 1 == 1

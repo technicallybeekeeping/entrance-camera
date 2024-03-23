@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 """
-Test the BeeCam class
+Test the Photo class
 """
 
 import pytest
-from src.BeePhoto import BeePhoto
+from src.Photo import Photo
 
 
 class _PiCamera2Stub:
@@ -23,15 +23,15 @@ class _FileNameFormatterStub:
 
 
 def test_start_and_capture_file():
-    sut = BeePhoto(cam=_PiCamera2Stub(), formatter=_FileNameFormatterStub())
-    result = sut.capture_photo()
+    sut = Photo(cam=_PiCamera2Stub(), formatter=_FileNameFormatterStub())
+    result = sut.capture()
     assert result is True
 
 
 def test_start_and_capture_file_exception():
-    sut = BeePhoto(cam=_PiCamera2ExceptionThrowerStub(),
-                   formatter=_FileNameFormatterStub())
-    result = sut.capture_photo()
+    sut = Photo(cam=_PiCamera2ExceptionThrowerStub(),
+                formatter=_FileNameFormatterStub())
+    result = sut.capture()
     assert result is False
 
     # with pytest.raises(Exception) as exc_info:   
