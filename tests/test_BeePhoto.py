@@ -4,7 +4,7 @@ Test the BeeCam class
 """
 
 import pytest
-from src.BeeCam import BeeCam
+from src.BeePhoto import BeePhoto
 
 
 class _PiCamera2Stub:
@@ -17,15 +17,21 @@ class _PiCamera2ExceptionThrowerStub:
         raise Exception('Explode!', 'Please!')
 
 
+class _FileNameFormatterStub:
+    def get_file_name(self):
+        return "stubbed"
+
+
 def test_start_and_capture_file():
-    sut = BeeCam(cam=_PiCamera2Stub())
-    result = sut.start_and_capture_file()
+    sut = BeePhoto(cam=_PiCamera2Stub(), formatter=_FileNameFormatterStub())
+    result = sut.capture_photo()
     assert result is True
 
 
 def test_start_and_capture_file_exception():
-    sut = BeeCam(cam=_PiCamera2ExceptionThrowerStub())
-    result = sut.start_and_capture_file()
+    sut = BeePhoto(cam=_PiCamera2ExceptionThrowerStub(),
+                   formatter=_FileNameFormatterStub())
+    result = sut.capture_photo()
     assert result is False
 
     # with pytest.raises(Exception) as exc_info:   
