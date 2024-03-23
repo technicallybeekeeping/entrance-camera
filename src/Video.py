@@ -10,7 +10,7 @@ class Video:
     def capture(self):
         try:
             logging.info("path=" + self.path)
-            self.cam.start_and_capture_file(self.path, duration=5)
+            self.cam.start_and_record_video(self.path, duration=5)
             logging.info("Capture successful: " + self.path)
         except Exception as ex:
             template = "Exception of type {0} occurred in Video capture." \
