@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 """
-Test the BeeMail class
+Test the Mail class
 """
 
 import pytest
-from src import EMail
+from src import Mail
 
 
 # def test_sendPhoto():

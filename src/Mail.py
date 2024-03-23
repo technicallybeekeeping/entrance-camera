@@ -4,7 +4,7 @@ from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 
 
-class EMail:
+class Mail:
     def __init__(self,
                  sender_email: str,
                  sender_password: str,
@@ -17,7 +17,7 @@ class EMail:
         self.subject = subject
         self.body = body
 
-    def sendPhoto(self, fileName: str):
+    def send_photo(self, fileName: str):
         with open(fileName, 'rb') as f:
             image_part = MIMEImage(f.read())
             message = MIMEMultipart()
@@ -35,10 +35,10 @@ class EMail:
 
 
 if __name__ == "__main__":
-    p1 = EMail("REDACTED",
+    p1 = Mail("REDACTED",
                 "REDACTED",
                 "REDACTED",
                 "This is the subject",
                 "This is the body")
     
-    p1.sendPhoto("./photos/hive1.jpg")
+    p1.send_photo("./photos/hive1.jpg")

@@ -1,14 +1,8 @@
-#!/usr/bin/env python
-"""
-Purger class
-"""
-# importing required modules 
 import os
 import datetime
 
 
 class Purger:
-
     def __init__(self, path, ends_with, max_days):
         self.path = path
         self.ends_with = ends_with

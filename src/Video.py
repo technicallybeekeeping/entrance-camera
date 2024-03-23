@@ -1,6 +1,3 @@
-"""
-Camera module for the Entrance
-"""
 import logging
 
 
