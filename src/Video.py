@@ -26,6 +26,6 @@ class Video:
 
 if __name__ == "__main__":
     from picamera2 import Picamera2
-    import FileNameFormatter
+    from FileNameFormatter import FileNameFormatter
     sut = Video(cam=Picamera2(), formatter=FileNameFormatter())
     sut.capture()
