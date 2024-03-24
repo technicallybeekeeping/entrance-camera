@@ -1,4 +1,4 @@
-import config
+from config import config
 import logging
 import schedule
 import time
@@ -14,7 +14,14 @@ def photo_task():
     logging.info("TechBeeCam task")
     cam = Photo(cam=Picamera2(), formatter=FileNameFormatter())
     file_path = cam.capture()
-    mail = Mail()
+    mail = Mail(config["mail"]["sender"],
+                config["mail"]["app-password"],
+                config["mail"]["recipient"],
+                config["mail"]["port"],
+                config["mail"]["server"],
+                config["mail"]["subject"],
+                config["mail"]["body"])
+    
     mail.send_photo(file_path)
     purger = Purger()
     purger.remove(file_path)
