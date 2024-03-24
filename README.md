@@ -5,6 +5,11 @@ Want to learn more?!?
 - [Technically Beekeeping YouTube](https://www.youtube.com/@TechnicallyBeekeeping) 
 - [Technically Beekeeping Site](https://technicallybeekeeping.com)
 
+Make sure to install python dependencies:
+```
+pip install schedule
+```
+
 ---
 ```
 ___ ____ ____ _  _ _  _ _ ____ ____ _    _   _   _   ___  ____ ____ _  _ ____ ____ ___  _ _  _ ____

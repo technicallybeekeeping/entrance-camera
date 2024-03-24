@@ -12,13 +12,13 @@ class Photo:
             logging.info("path=" + self.path)
             self.cam.start_and_capture_file(self.path, show_preview=False)
             logging.info("Capture successful: " + self.path)
+            return self.path
         except Exception as ex:
             template = "Exception of type {0} occurred in Photo capture." \
                 + "Arguments:\n{1!r}"
             message = template.format(type(ex).__name__, ex.args)
             logging.error(message)
-            return False
-        return True
+            return None
 
 
 if __name__ == "__main__":

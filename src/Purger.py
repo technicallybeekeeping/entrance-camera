@@ -1,5 +1,6 @@
 import os
 import datetime
+import logging
 
 
 class Purger:
@@ -7,6 +8,10 @@ class Purger:
         self.path = path
         self.ends_with = ends_with
         self.max_days = max_days
+
+    def remove(self, file_path):
+        logging.info("Purger remove")
+        os.remove(file_path)
 
     # function to perform delete operation based on condition
     def purge_photos(self):

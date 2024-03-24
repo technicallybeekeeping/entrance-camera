@@ -25,14 +25,14 @@ class _FileNameFormatterStub:
 def test_start_and_capture_file():
     sut = Photo(cam=_PiCamera2Stub(), formatter=_FileNameFormatterStub())
     result = sut.capture()
-    assert result is True
+    assert result is not None
 
 
 def test_start_and_capture_file_exception():
     sut = Photo(cam=_PiCamera2ExceptionThrowerStub(),
                 formatter=_FileNameFormatterStub())
     result = sut.capture()
-    assert result is False
+    assert result is None
 
     # with pytest.raises(Exception) as exc_info:   
     #     sut.start_and_capture_file()
