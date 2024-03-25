@@ -17,8 +17,8 @@ config = {
         "recipient": "MODIFY-RECIPIENT-EMAIL-ADDRESS",
         "port": 465,
         "server": "smtp.gmail.com",
-        "subject": "BeeMail",
-        "body": "Here is your BeeMail!"
+        "subject": "BeeMail 🐝 📫",
+        "body": "Here is your BeeMail! 🙌"
     }
 }
 

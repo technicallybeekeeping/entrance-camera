@@ -4,6 +4,7 @@ from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 import logging
 from config import config
+import os
 
 
 class Mail:
@@ -23,10 +24,14 @@ class Mail:
         self.subject = subject
         self.body = body
 
-    def send_photo(self, fileName: str):
+    def send_photo(self, file_path: str):
         try:
-            with open(fileName, 'rb') as f:
+            with open(file_path, 'rb') as f:
                 image_part = MIMEImage(f.read())
+                image_part.add_header('Content-ID', '<image>')
+                file_name = os.path.basename(file_path)
+                image_part.add_header('Content-Disposition', 'inline',
+                                      filename=file_name)
                 message = MIMEMultipart()
                 message['Subject'] = self.subject
                 message['From'] = self.sender_email
