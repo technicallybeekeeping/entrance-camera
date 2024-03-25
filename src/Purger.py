@@ -21,17 +21,19 @@ class Purger:
                     continue
 
                 file_path = os.path.join(root, f)
-                timestamp_of_file_modified = os.path.getmtime(file_path)
-                modification_date = datetime.datetime.fromtimestamp(timestamp_of_file_modified)
-                delta = (datetime.datetime.now() - modification_date)
+                modified_ts = os.path.getmtime(file_path)
+                modified_on = datetime.datetime.fromtimestamp(modified_ts)
+                delta = (datetime.datetime.now() - modified_on)
                 if delta.days > self.max_days:
-                    print(f"    Delete : {f}, days old {delta.days}, max_days {self.max_days}")
+                    logging.info(f"Delete : {f}, days old {delta.days}, max_days {self.max_days}")
                     os.remove(file_path)
                 else:
-                    print(f"!!! Do NOT Delete : {f}, days old {delta.days}, max_days {self.max_days}")
+                    logging.info(f"!!! Do NOT Delete : {f}, days old {delta.days}, max_days {self.max_days}")
 
 
 if __name__ == "__main__":
-    # Run as a script
-    x = Purger("./photos", ".jpg", 1)
-    x.purge_photos()
+    from config import config
+    sut = Purger(config["photos"]["path"],
+                 config["photos"]["ends_with"],
+                 config["photos"]["max_days_alive"])
+    sut.purge_photos()

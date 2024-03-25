@@ -1,4 +1,5 @@
 # Don't put photos into git
+.DS_Store
 photos/*
 videos/*
 

@@ -47,7 +47,6 @@ class Mail:
 
 
 if __name__ == "__main__":
-
     p1 = Mail(config["mail"]["sender"],
               config["mail"]["app-password"],
               config["mail"]["recipient"],
