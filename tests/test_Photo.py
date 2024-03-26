@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """
 Test the Photo class
 """
@@ -11,10 +10,16 @@ class _PiCamera2Stub:
     def start_and_capture_file(self, path, show_preview):
         return True
 
+    def close(self):
+        pass
+
 
 class _PiCamera2ExceptionThrowerStub:
     def start_and_capture_file(self, path, show_preview):
         raise Exception('Explode!', 'Please!')
+
+    def close(self):
+        pass
 
 
 class _FileNameFormatterStub:

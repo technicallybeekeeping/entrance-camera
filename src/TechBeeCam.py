@@ -35,6 +35,9 @@ def photo_task():
 if __name__ == "__main__":
     logging.info("TechBeeCam starting ...")
     schedule.every(1).minutes.do(photo_task)
+    # schedule.every().hour.at(":00").do(photo_task)
+    # schedule.every().hour.at(":30").do(video_task)
+    # schedule.every().day.at("12:05").do(purge_task)
 
     while True:
         schedule.run_pending()

@@ -19,6 +19,8 @@ class Video:
             message = template.format(type(ex).__name__, ex.args)
             logging.error(message)
             return None
+        finally:
+            self.cam.close()
 
 
 if __name__ == "__main__":
