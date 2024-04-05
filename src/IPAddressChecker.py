@@ -15,7 +15,8 @@ class IPAddressChecker:
         elif (self.last_recorded == current):
             return False
         logging.info("IP Address has changed" +
-                     " from {self.last_recorded} to {current}")
+                     " from " + self.last_recorded +
+                     " to " + current)
         self.last_recorded = current
         return True
 
@@ -24,4 +25,4 @@ if __name__ == "__main__":
     from IPAddress import IPAddress
     sut = IPAddressChecker(ipaddress=IPAddress)
     result = sut.has_changed()
-    print("Result of check = {result}")
+    print("Result of check " + str(result))

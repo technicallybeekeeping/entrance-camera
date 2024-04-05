@@ -1,4 +1,5 @@
 import logging
+import os
 
 config = {
     "photos": {
@@ -19,14 +20,14 @@ config = {
         "port": 587,
         "server": "smtp.gmail.com",
         "photo": {
-            "subject": "BeeMail Photo 🐝 📫 📸",
+            "subject": "BeeMail - Photo 🐝 📫 📸",
             "body": """
 Here is your BeeMail! 🙌 
     Current IP address: {ip_address}
 """
         },
         "video": {
-            "subject": "BeeMail Video 🐝 📫 🎥",
+            "subject": "BeeMail - Video 🐝 📫 🎥",
             "body": """
 Here is your BeeMail! 🙌 
     Current IP address: {ip_address}
@@ -44,7 +45,17 @@ you'll want to change to this IP address:
     }
 }
 
+# Create the logs directory if it doesn't exist
+logs_directory = '../logs'
+if not os.path.exists(logs_directory):
+    os.makedirs(logs_directory)
+
+# Configure logging
+logging.basicConfig(level=logging.INFO,  # Set the logging level
+                    format='%(asctime)s - %(levelname)s - %(message)s',
+                    filename=os.path.join(logs_directory, 'app.log'),
+                    filemode='a')  # Set the file mode to append
+
 # Logging settings
-logging.basicConfig()
 logging.getLogger().setLevel(logging.INFO)
 logger = logging.getLogger(__name__)

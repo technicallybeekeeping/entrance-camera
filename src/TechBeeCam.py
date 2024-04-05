@@ -8,8 +8,8 @@ from Mail import Mail
 from Purger import Purger
 from picamera2 import Picamera2
 from FileNameFormatter import FileNameFormatter
-import IPAddressChecker
-import IPAddress
+from IPAddressChecker import IPAddressChecker
+from IPAddress import IPAddress
 
 ip_checker = IPAddressChecker(ipaddress=IPAddress)
 mailer = Mail(config["mail"]["enabled"],
@@ -17,9 +17,7 @@ mailer = Mail(config["mail"]["enabled"],
               config["mail"]["app-password"],
               config["mail"]["recipient"],
               config["mail"]["port"],
-              config["mail"]["server"],
-              config["mail"]["subject"],
-              config["mail"]["body"])
+              config["mail"]["server"])
 
 purger = Purger(config["photos"]["path"],
                 config["photos"]["ends_with"],
