@@ -26,9 +26,23 @@ purger = Purger(config["photos"]["path"],
                 config["photos"]["max_days_alive"])
 
 
+def is_daylight_hours():
+    current_hour = int(time.strftime('%H'))
+
+    # Check for between 6 am and 8 pm
+    # TODO - could make this dynamic depending on the time of year
+    if current_hour >= 6 and current_hour < 20:
+        return True
+    return False
+
+
 def task_photo():
     logging.info("Task Photo starting ...")
     global mailer
+
+    if (is_daylight_hours() is False):
+        return
+
     cam1 = Picamera2()
     formatter1 = FileNameFormatter()
     cam = Photo(cam=cam1, formatter=formatter1)
@@ -53,6 +67,10 @@ def task_check_ip():
 def task_video():
     logging.info("Task Video starting ...")
     global mailer
+
+    if (is_daylight_hours() is False):
+        return
+
     cam1 = Picamera2()
     formatter1 = FileNameFormatter()
     cam = Video(cam=cam1, formatter=formatter1)

@@ -135,10 +135,10 @@ if __name__ == "__main__":
     sut.send_ip_change("Test - " + config["mail"]["ip-changed"]["subject"],
                        "Test - " + config["mail"]["ip-changed"]["body"])
 
-    sut.send_photo("../tests/artifacts/test-email-photo-1.jpeg",
-                   "Test - " + config["mail"]["photo"]["subject"],
-                   "Test - " + config["mail"]["photo"]["body"])
+    # sut.send_photo("../tests/artifacts/test-email-photo-1.jpeg",
+    #                "Test - " + config["mail"]["photo"]["subject"],
+    #                "Test - " + config["mail"]["photo"]["body"])
 
-    sut.send_video("../tests/artifacts/test-video-1.mp4",
-                   "Test - " + config["mail"]["video"]["subject"],
-                   "Test - " + config["mail"]["video"]["body"])
+    # sut.send_video("../tests/artifacts/test-video-1.mp4",
+    #                "Test - " + config["mail"]["video"]["subject"],
+    #                "Test - " + config["mail"]["video"]["body"])
