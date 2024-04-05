@@ -16,7 +16,8 @@ def photo_task():
     formatter1 = FileNameFormatter()
     cam = Photo(cam=cam1, formatter=formatter1)
     file_path = cam.capture()
-    mail = Mail(config["mail"]["sender"],
+    mail = Mail(config["mail"]["enabled"],
+                config["mail"]["sender"],
                 config["mail"]["app-password"],
                 config["mail"]["recipient"],
                 config["mail"]["port"],
@@ -34,8 +35,7 @@ def photo_task():
 
 if __name__ == "__main__":
     logging.info("TechBeeCam starting ...")
-    schedule.every(1).minutes.do(photo_task)
-    # schedule.every().hour.at(":00").do(photo_task)
+    schedule.every().hour.at(":00").do(photo_task)
     # schedule.every().hour.at(":30").do(video_task)
     # schedule.every().day.at("12:05").do(purge_task)
 

@@ -12,13 +12,17 @@ config = {
         "max_days_alive": 1
     },
     "mail": {
+        "enabled": 0,
         "sender": "MODIFY-SENDER-EMAIL-ADDRESS",
         "app-password": "MODIFY-APP-PASSWORD",
         "recipient": "MODIFY-RECIPIENT-EMAIL-ADDRESS",
         "port": 465,
         "server": "smtp.gmail.com",
         "subject": "BeeMail 🐝 📫",
-        "body": "Here is your BeeMail! 🙌"
+        "body": """
+Here is your BeeMail! 🙌 
+    Current IP address: {ip_address}
+"""
     }
 }
 
