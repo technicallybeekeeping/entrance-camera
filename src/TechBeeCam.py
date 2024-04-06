@@ -29,7 +29,7 @@ def is_daylight_hours():
 
     # Check for between 6 am and 8 pm
     # TODO - could make this dynamic depending on the time of year
-    if current_hour >= 6 and current_hour < 20:
+    if current_hour >= 6 and current_hour < 24: # TODO - Put back to 20 after testing
         return True
     return False
 
@@ -72,7 +72,7 @@ def task_video():
     cam1 = Picamera2()
     formatter1 = FileNameFormatter()
     cam = Video(cam=cam1, formatter=formatter1)
-    file_path = cam.capture()
+    file_path = cam.capture(config["videos"]["duration_secs"])
 
     mailer.send_video(file_path,
                       config["mail"]["video"]["subject"],

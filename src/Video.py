@@ -7,10 +7,10 @@ class Video:
         self.path = "../videos/" + name + ".mp4"
         self.cam = cam
 
-    def capture(self):
+    def capture(self, duration):
         try:
             logging.info("path=" + self.path)
-            self.cam.start_and_record_video(self.path, duration=5)
+            self.cam.start_and_record_video(self.path, duration=duration)
             logging.info("Capture successful: " + self.path)
             return self.path
         except Exception as ex:
@@ -26,5 +26,7 @@ class Video:
 if __name__ == "__main__":
     from picamera2 import Picamera2
     from FileNameFormatter import FileNameFormatter
+    from config import config
+
     sut = Video(cam=Picamera2(), formatter=FileNameFormatter())
-    sut.capture()
+    sut.capture(config["videos"]["duration_secs"])
