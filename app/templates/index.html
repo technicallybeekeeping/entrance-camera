@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Page with Header Image</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <a href="https://technicallybeekeeping.com">
+            <img src="{{ url_for('static', filename='images/header_image.png') }}" alt="Header Image">
+        </a>
+    </header>
+    <main>
+        <h1>Download 💾</h1>
+        <ul>
+            <li><a href="{{ url_for('photos') }}">Photos</a></li>
+            <li><a href="{{ url_for('videos') }}">Videos</a></li>
+        </ul>
+    </main>
+    <footer>
+        <!-- Add footer content here -->
+    </footer>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

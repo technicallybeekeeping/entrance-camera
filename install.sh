@@ -1,4 +1,5 @@
 pip install schedule
+pip install Flask
 
 crontab -l | { cat; echo "@reboot cd /home/techbee/Desktop/entrance-camera/src/; sudo -E /usr/bin/python TechBeeCam.py"; } | crontab -
 

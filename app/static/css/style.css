@@ -1,0 +1,20 @@
+body {
+    background-color: black;
+    color: orange;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+}
+
+header img {
+    max-width: 100%;
+}
+a {
+    color: white;
+    text-decoration: none;
+}
