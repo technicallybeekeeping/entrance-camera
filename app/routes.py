@@ -3,6 +3,10 @@ from app import app
 import os
 import logging
 
+# TODO - remove this hardcoding :(
+# root_path = '/Users/merpenbeck/src/techbee/entrance-camera'
+root_path = '/home/techbee/Desktop/entrance-camera'
+
 
 def should_be_hidden_file(file_name):
     if file_name.lower() == "readme.md" or file_name.lower().startswith('.'):
@@ -19,7 +23,8 @@ def index():
 
 @app.route('/photos')
 def photos():
-    directory_path = '/Users/merpenbeck/src/techbee/entrance-camera/photos'
+    global root_path
+    directory_path = root_path + '/photos'
     logging.warning("in photos")
     files = os.listdir(directory_path)
     sorted_files = sorted(files)  # Sort files alphabetically
@@ -37,7 +42,8 @@ def photos():
 
 @app.route('/videos')
 def videos():
-    directory_path = '/Users/merpenbeck/src/techbee/entrance-camera/videos'
+    global root_path
+    directory_path = root_path + '/videos'
     logging.warning("in videos")
     files = os.listdir(directory_path)
     sorted_files = sorted(files)  # Sort files alphabetically
@@ -55,9 +61,6 @@ def videos():
 
 @app.route('/download/<path:directory_path>')
 def download_directory(directory_path):
-    root_directory = '/Users/merpenbeck/src/techbee/entrance-camera'
-    # root_directory = '/home/techbee/Desktop/entrance-camera'
+    global root_path
 
-    full_directory_path = root_directory + '/' + directory_path
-    logging.info("full_directory_path = " + full_directory_path)
-    return send_from_directory(root_directory, directory_path)
+    return send_from_directory(root_path, directory_path)
