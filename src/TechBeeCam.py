@@ -10,6 +10,7 @@ from picamera2 import Picamera2
 from FileNameFormatter import FileNameFormatter
 from IPAddressChecker import IPAddressChecker
 from IPAddress import IPAddress
+import ProcessLocker
 
 ip_checker = IPAddressChecker(ipaddress=IPAddress)
 mailer = Mail(config["mail"]["enabled"],
@@ -86,14 +87,24 @@ def task_purge():
     purger.purge_photos()
 
 
-if __name__ == "__main__":
-    logging.info("TechBeeCam starting ...")
-
+def schedule_tasks():
     schedule.every().minute.do(task_check_ip)
     schedule.every().hour.at(":00").do(task_photo)
     schedule.every().hour.at(":30").do(task_video)
     schedule.every().day.at("12:15").do(task_purge)
 
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
+
+if __name__ == "__main__":
+    locker = ProcessLocker()
+    if not locker.acquire_lock():
+        logging.error("Another instance of TechBeeCam.py is already running.")
+        exit(1)
+
+    try:
+        logging.info("TechBeeCam starting ...")
+        schedule_tasks()
+        while True:
+            schedule.run_pending()
+            time.sleep(1)
+    finally:
+        locker.release_lock()

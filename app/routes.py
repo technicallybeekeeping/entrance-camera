@@ -4,8 +4,8 @@ import os
 import logging
 
 # TODO - remove this hardcoding :(
-# root_path = '/Users/merpenbeck/src/techbee/entrance-camera'
-root_path = '/home/techbee/Desktop/entrance-camera'
+root_path = '/Users/merpenbeck/src/techbee/entrance-camera'
+# root_path = '/home/techbee/Desktop/entrance-camera'
 
 
 def should_be_hidden_file(file_name):
