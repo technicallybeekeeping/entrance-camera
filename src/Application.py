@@ -1,4 +1,4 @@
-from configs.config import config
+from config import config
 import logging
 import schedule
 import time

@@ -26,7 +26,7 @@ class Video:
 if __name__ == "__main__":
     from picamera2 import Picamera2
     from FileNameFormatter import FileNameFormatter
-    from configs.config import config
+    from config import config
 
     sut = Video(cam=Picamera2(),
                 formatter=FileNameFormatter(),

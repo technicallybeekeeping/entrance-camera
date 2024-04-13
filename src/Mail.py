@@ -124,7 +124,7 @@ class Mail:
 
 
 if __name__ == "__main__":
-    from configs.config import config
+    from config import config
 
     sut = Mail(config["mail"]["enabled"],
                config["mail"]["sender"],

@@ -6,7 +6,7 @@ import logging
 
 class Installer:
     def __init__(self):
-        self.config_file = 'configs/config.py'
+        self.config_file = 'src/config.py'
 
     def get_valid_boolean_from_user(self, request):
         while True:
