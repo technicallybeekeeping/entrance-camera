@@ -3,12 +3,12 @@ import os
 
 config = {
     "photos": {
-        "path": "../photos",
+        "path": "../photos/",
         "ends_with": "jpg",
         "max_days_alive": 1
     },
     "videos": {
-        "path": "../videos",
+        "path": "../videos/",
         "ends_with": "mp4",
         "max_days_alive": 1,
         "duration_secs": 15
