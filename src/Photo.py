@@ -2,9 +2,9 @@ import logging
 
 
 class Photo:
-    def __init__(self, cam=None, formatter=None):
+    def __init__(self, cam=None, formatter=None, path=None):
         name = formatter.get_file_name()
-        self.path = "../photos/" + name + ".jpg"
+        self.path = path + name + ".jpg"
         self.cam = cam
 
     def capture(self):
@@ -25,6 +25,9 @@ class Photo:
 
 if __name__ == "__main__":
     from picamera2 import Picamera2
+    from configs.config import config
     from FileNameFormatter import FileNameFormatter
-    sut = Photo(cam=Picamera2(), formatter=FileNameFormatter())
+    sut = Photo(cam=Picamera2(),
+                formatter=FileNameFormatter(),
+                path=config["photos"]["path"])
     sut.capture()

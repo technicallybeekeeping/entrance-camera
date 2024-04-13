@@ -38,7 +38,8 @@ class Purger:
 
 
 if __name__ == "__main__":
-    from config import config
+    from configs.config import config
+
     sut = Purger(config["photos"]["path"],
                  config["photos"]["ends_with"],
                  config["photos"]["max_days_alive"])

@@ -2,9 +2,9 @@ import logging
 
 
 class Video:
-    def __init__(self, cam=None, formatter=None):
+    def __init__(self, cam=None, formatter=None, path=None):
         name = formatter.get_file_name()
-        self.path = "../videos/" + name + ".mp4"
+        self.path = path + name + ".mp4"
         self.cam = cam
 
     def capture(self, duration):
@@ -26,7 +26,9 @@ class Video:
 if __name__ == "__main__":
     from picamera2 import Picamera2
     from FileNameFormatter import FileNameFormatter
-    from config import config
+    from configs.config import config
 
-    sut = Video(cam=Picamera2(), formatter=FileNameFormatter())
+    sut = Video(cam=Picamera2(),
+                formatter=FileNameFormatter(),
+                path=config["videos"]["path"])
     sut.capture(config["videos"]["duration_secs"])

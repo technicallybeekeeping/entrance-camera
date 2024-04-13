@@ -5,7 +5,6 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
 import logging
-from config import config
 from IPAddress import IPAddress
 import os
 
@@ -125,6 +124,8 @@ class Mail:
 
 
 if __name__ == "__main__":
+    from configs.config import config
+
     sut = Mail(config["mail"]["enabled"],
                config["mail"]["sender"],
                config["mail"]["app-password"],

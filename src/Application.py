@@ -1,4 +1,4 @@
-from config import config
+from configs.config import config
 import logging
 import schedule
 import time
@@ -39,7 +39,9 @@ class Application:
 
         cam1 = Picamera2()
         formatter1 = FileNameFormatter()
-        cam = Photo(cam=cam1, formatter=formatter1)
+        cam = Photo(cam=cam1,
+                    formatter=formatter1,
+                    photos_path=config["photos"]["path"])
         file_path = cam.capture()
 
         self.mailer.send_photo(file_path,
@@ -60,7 +62,9 @@ class Application:
 
         cam1 = Picamera2()
         formatter1 = FileNameFormatter()
-        cam = Video(cam=cam1, formatter=formatter1)
+        cam = Video(cam=cam1,
+                    formatter=formatter1,
+                    path=config["videos"]["path"])
         file_path = cam.capture(config["videos"]["duration_secs"])
 
         self.mailer.send_video(file_path,
