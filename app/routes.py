@@ -17,6 +17,7 @@ def should_be_hidden_file(file_name):
 
 @app.route('/')
 def index():
+    logging.info("In index!!!")
     header_image_path = 'static/images/header_image.png'
     return render_template('index.html', header_image=header_image_path)
 
