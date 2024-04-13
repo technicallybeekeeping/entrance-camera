@@ -1,4 +1,3 @@
-from config import config
 import os
 import re
 import subprocess
@@ -98,48 +97,3 @@ class Installer:
             new_directory = "/Users/merpenbeck/src/techbee/entrance-camera/src"
             os.chdir(new_directory)
             logging.info(f"Changed directory to: {new_directory}")
-
-
-if __name__ == "__main__":
-    installer = Installer()
-    # Example crontab entry to add (runs every minute)
-    # entry_to_add = "* * * * * /path/to/your/command"
-
-    installer.check_and_change_directory()
-
-    enabled = installer.get_valid_boolean_from_user(
-            "Do you want to enable email support? " +
-            "'yes' or 'no': ")
-
-    sender = "MODIFY-SENDER-EMAIL-ADDRESS"
-    app_password = "MODIFY-APP-PASSWORD"
-    recipient = "MODIFY-RECIPIENT-EMAIL-ADDRESS"
-
-    if (enabled == 1):
-        sender = installer.get_valid_email("Please enter your email address " +
-                                         "(sender email address): ")
-        app_password = installer.get_valid_string_from_user(
-            "Please enter your 16 character app password from Google: ",
-            16,
-            16)
-        recipient = installer.get_valid_email(
-            "Please enter the email address receive email " +
-            "(recipient email address): ")
-
-    replacements = {
-        r"\"enabled\": .*,": "\"enabled\": " + str(enabled) + ",",
-        r"\"sender\": (.*)": "\"sender\": \"" + sender + "\",",
-        r"\"app-password\": (.*)": "\"app-password\": \"" + app_password + "\",",
-        r"\"recipient\": (.*)": "\"recipient\": \"" + recipient + "\","
-    }
-    installer.replace_strings(replacements)
-
-    installer.install_package("schedule")
-    installer.install_package("Flask")
-
-    entry = "@reboot cd /home/techbee/Desktop/entrance-camera/src/; " + \
-            "sudo -E /usr/bin/python TechBeeCam.py"
-    installer.add_crontab_entry(entry)
-    entry = "@reboot cd /home/techbee/Desktop/entrance-camera/; " + \
-            "sudo -E /usr/bin/python run_app_server.py"
-    installer.add_crontab_entry(entry)

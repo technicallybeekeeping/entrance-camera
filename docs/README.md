@@ -1,0 +1,1 @@
+This directory will contain documentation around how to configure this application.
