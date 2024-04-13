@@ -25,7 +25,7 @@ class Photo:
 
 if __name__ == "__main__":
     from picamera2 import Picamera2
-    from configs.config import config
+    from config import config
     from FileNameFormatter import FileNameFormatter
     sut = Photo(cam=Picamera2(),
                 formatter=FileNameFormatter(),
