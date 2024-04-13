@@ -3,7 +3,7 @@ from src.Installer import Installer
 if __name__ == "__main__":
     installer = Installer()
 
-    installer.check_and_change_directory()
+    # installer.check_and_change_directory()
 
     enabled = installer.get_valid_boolean_from_user(
             "Do you want to enable email support? " +
@@ -17,9 +17,9 @@ if __name__ == "__main__":
         sender = installer.get_valid_email("Please enter your email address " +
                                            "(sender email address): ")
         app_password = installer.get_valid_string_from_user(
-            "Please enter your 16 character app password from Google: ",
-            16,
-            16)
+            "Please enter your 19 character app password from Google: ",
+            19,
+            19)
         recipient = installer.get_valid_email(
             "Please enter the email address receive email " +
             "(recipient email address): ")

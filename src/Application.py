@@ -10,7 +10,7 @@ from picamera2 import Picamera2
 from FileNameFormatter import FileNameFormatter
 from IPAddressChecker import IPAddressChecker
 from IPAddress import IPAddress
-import ProcessLocker
+from ProcessLocker import ProcessLocker
 
 
 class Application:
