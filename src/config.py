@@ -47,16 +47,18 @@ you'll want to change to this IP address:
 }
 
 # Create the logs directory if it doesn't exist
-logs_directory = '../logs'
-if not os.path.exists(logs_directory):
-    os.makedirs(logs_directory)
+# logs_directory = '../logs'
+# if not os.path.exists(logs_directory):
+#     os.makedirs(logs_directory)
 
-# Configure logging
-logging.basicConfig(level=logging.INFO,  # Set the logging level
-                    format='%(asctime)s - %(levelname)s - %(message)s',
-                    filename=os.path.join(logs_directory, 'app.log'),
-                    filemode='a')  # Set the file mode to append
+# # Configure logging
+# logging.basicConfig(level=logging.INFO,  # Set the logging level
+#                     format='%(asctime)s - %(levelname)s - %(message)s',
+#                     filename=os.path.join(logs_directory, 'app.log'),
+#                     filemode='a')  # Set the file mode to append
 
-# Logging settings
+# # Logging settings
+
+logging.basicConfig(level=logging.INFO)
 logging.getLogger().setLevel(logging.INFO)
 logger = logging.getLogger(__name__)
