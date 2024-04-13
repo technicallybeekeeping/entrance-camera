@@ -54,7 +54,7 @@ class Installer:
                 file.write(file_data)
             logging.info("Successfully update configuration.")
         except Exception as e:
-            logging.Error("Error occurred while replacing strings:", e)
+            logging.error("Error occurred while replacing strings:", e)
 
     def add_crontab_entry(self, entry):
         # Get current crontab entries
