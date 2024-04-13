@@ -80,6 +80,7 @@ class Application:
         schedule.every().minute.do(self.task_check_ip)
         schedule.every().hour.at(":00").do(self.task_photo)
         schedule.every().hour.at(":30").do(self.task_video)
+        schedule.every().hour.at(":50").do(self.task_video)
         schedule.every().day.at("12:15").do(self.task_purge)
 
     def run(self):
