@@ -11,7 +11,7 @@ config = {
         "path": "../videos/",
         "ends_with": "mp4",
         "max_days_alive": 1,
-        "duration_secs": 15
+        "duration_secs": 300
     },
     "mail": {
         "enabled": 0,

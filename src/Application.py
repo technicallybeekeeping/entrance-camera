@@ -28,7 +28,7 @@ class Application:
 
     def is_daylight_hours(self):
         current_hour = int(time.strftime('%H'))
-        if 6 <= current_hour < 24:
+        if 6 <= current_hour < 20:
             return True
         return False
 
@@ -41,7 +41,7 @@ class Application:
         formatter1 = FileNameFormatter()
         cam = Photo(cam=cam1,
                     formatter=formatter1,
-                    photos_path=config["photos"]["path"])
+                    path=config["photos"]["path"])
         file_path = cam.capture()
 
         self.mailer.send_photo(file_path,
