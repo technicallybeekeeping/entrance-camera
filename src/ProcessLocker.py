@@ -1,12 +1,11 @@
 import fcntl
 import os
 import logging
-import time
 
 
 class ProcessLocker:
     def __init__(self):
-        self.lockfile = '/tmp/TechBeeCam.lock'
+        self.lockfile = '/tmp/Application.lock'
 
     def acquire_lock(self):
         try:
@@ -15,7 +14,8 @@ class ProcessLocker:
             self.lock_fd.write(str(os.getpid()))
             self.lock_fd.flush()
             return True
-        except IOError:
+        except IOError as ex:
+            logging.error("Cannot acquire lock.", ex)
             return False
 
     def release_lock(self):
