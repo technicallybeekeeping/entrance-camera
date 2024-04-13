@@ -28,14 +28,17 @@ class _FileNameFormatterStub:
 
 
 def test_start_and_capture_file():
-    sut = Photo(cam=_PiCamera2Stub(), formatter=_FileNameFormatterStub())
+    sut = Photo(cam=_PiCamera2Stub(),
+                formatter=_FileNameFormatterStub(),
+                path="../photos/")
     result = sut.capture()
     assert result is not None
 
 
 def test_start_and_capture_file_exception():
     sut = Photo(cam=_PiCamera2ExceptionThrowerStub(),
-                formatter=_FileNameFormatterStub())
+                formatter=_FileNameFormatterStub(),
+                path="../photos/")
     result = sut.capture()
     assert result is None
 
