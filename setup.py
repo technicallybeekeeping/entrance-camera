@@ -35,9 +35,9 @@ if __name__ == "__main__":
     installer.install_package("schedule")
     installer.install_package("Flask")
 
-    entry = "@reboot cd /home/techbee/Desktop/entrance-camera/src/; " + \
+    entry = "@reboot cd ~/Desktop/entrance-camera/src/; " + \
             "sudo -E /usr/bin/python Application.py"
     installer.add_crontab_entry(entry)
-    entry = "@reboot cd /home/techbee/Desktop/entrance-camera/web/; " + \
+    entry = "@reboot cd ~/Desktop/entrance-camera/web/; " + \
             "sudo -E /usr/bin/python start_web_app.py"
     installer.add_crontab_entry(entry)
