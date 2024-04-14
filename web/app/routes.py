@@ -3,9 +3,13 @@ from app import app
 import os
 import logging
 
-# TODO - remove this hardcoding :(
-# root_path = '/Users/merpenbeck/src/techbee/entrance-camera'
-root_path = '/home/techbee/Desktop/entrance-camera'
+
+def get_root_path():
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    parent_dir = os.path.dirname(script_dir)
+    grandparent_dir = os.path.dirname(parent_dir)
+
+    return grandparent_dir
 
 
 def should_be_hidden_file(file_name):
@@ -24,9 +28,9 @@ def index():
 
 @app.route('/photos')
 def photos():
-    global root_path
+    root_path = get_root_path()
     directory_path = root_path + '/photos'
-    logging.warning("in photos")
+
     files = os.listdir(directory_path)
     sorted_files = sorted(files)  # Sort files alphabetically
     file_links = []
@@ -43,9 +47,9 @@ def photos():
 
 @app.route('/videos')
 def videos():
-    global root_path
+    root_path = get_root_path()
     directory_path = root_path + '/videos'
-    logging.warning("in videos")
+
     files = os.listdir(directory_path)
     sorted_files = sorted(files)  # Sort files alphabetically
     file_links = []
@@ -62,6 +66,6 @@ def videos():
 
 @app.route('/download/<path:directory_path>')
 def download_directory(directory_path):
-    global root_path
+    root_path = get_root_path()
 
     return send_from_directory(root_path, directory_path)
