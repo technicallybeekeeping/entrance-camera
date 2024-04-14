@@ -1,4 +1,3 @@
-import os
 import re
 import subprocess
 import logging
@@ -90,10 +89,3 @@ class Installer:
             logging.info(package + " package successfully installed.")
         except subprocess.CalledProcessError as e:
             logging.error("Error occurred while installing " + package, e)
-
-    def check_and_change_directory(self):
-        current_directory = os.getcwd()
-        if os.path.basename(current_directory) != 'src':
-            new_directory = "/Users/merpenbeck/src/techbee/entrance-camera/src"
-            os.chdir(new_directory)
-            logging.info(f"Changed directory to: {new_directory}")
