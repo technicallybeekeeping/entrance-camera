@@ -34,7 +34,7 @@ Here is your BeeMail for {host}! 🙌
 """
         },
         "video": {
-            "subject": "BeeMail - Video ({host})🐝 📫 🎥",
+            "subject": "BeeMail - Video ({host}) 🐝 📫 🎥",
             "body": """
 Here is your BeeMail for {host}! 🙌 
 <ul>
