@@ -158,9 +158,17 @@ class Installer:
             print("Invalid option. Please choose 0, 1, or 2.")
         self.add_crontab_entry(crontab_string)
 
-    def install_postfix(self):
+    def install_postfix_silently(self):
         try:
-            subprocess.run(['sudo', 'apt-get', 'install', 'postfix'], check=True)
+            # Preconfigure Postfix
+            subprocess.run(
+                ['sudo', 'debconf-set-selections'],
+                input=b'postfix postfix/main_mailer_type select No configuration\n',
+                check=True)
+            # Install Postfix
+            subprocess.run(
+                ['sudo', 'apt-get', 'install', '-y', 'postfix'],
+                check=True)
             print("Postfix installed successfully.")
         except subprocess.CalledProcessError as e:
             print("Error installing Postfix:", e)

@@ -59,4 +59,4 @@ if __name__ == "__main__":
 
     installer.install_package("schedule")
     installer.install_package("Flask")
-    installer.install_postfix()
+    installer.install_postfix_silently()

@@ -10,7 +10,7 @@ class Application:
         pass
 
     @staticmethod
-    def is_daylight_hours(self):
+    def is_daylight_hours():
         current_hour = int(time.strftime('%H'))
         if 6 <= current_hour < 20:
             return True
