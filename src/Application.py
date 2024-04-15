@@ -4,6 +4,7 @@ import time
 from TaskSingleton import TaskSingleton
 from config import config
 
+
 class Application:
     def __init__(self):
         pass

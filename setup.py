@@ -32,12 +32,25 @@ if __name__ == "__main__":
     }
     installer.replace_strings(replacements)
 
+    installer.clear_crontab()
+
+    option = installer.get_photo_option_from_user()
+    installer.schedule_photo_crontab(option)
+
+    option = installer.get_video_option_from_user()
+    installer.schedule_video_crontab(option)
+
+    # reboot daily at 11:45 pm every day
+    entry = '40 23 * * * ' + installer.get_base_command() + ' TaskReboot'
+    installer.add_crontab_entry(entry)
+
+    # Purge process nightly
+    entry = '45 12 * * * ' + installer.get_base_command() + ' TaskPurge'
+    installer.add_crontab_entry(entry)
+
+    # Check for IP changes every 10 minutes on the 8s
+    entry = '8-58/10 * * * * ' + installer.get_base_command() + ' TaskCheckIP'
+    installer.add_crontab_entry(entry)
+
     installer.install_package("schedule")
     installer.install_package("Flask")
-
-    entry = "@reboot cd ~/Desktop/entrance-camera/src/; " + \
-            "sudo -E /usr/bin/python Application.py"
-    installer.add_crontab_entry(entry)
-    entry = "@reboot cd ~/Desktop/entrance-camera/web/; " + \
-            "sudo -E /usr/bin/python start_web_app.py"
-    installer.add_crontab_entry(entry)

@@ -7,6 +7,35 @@ class Installer:
     def __init__(self):
         self.config_file = 'src/config.py'
 
+    def get_photo_option_from_user(self):
+        while True:
+            print("Please choose one of the following options:")
+            print("0. Do not take still photos of the bees")
+            print("1. Photograph the bees once a day")
+            print("2. Photograph the bees every hour")
+
+            choice = input("Enter your choice (0, 1, or 2): ")
+
+            if choice in ['0', '1', '2']:
+                return int(choice)
+            else:
+                print("Invalid choice. Please enter 0, 1, or 2.")
+
+
+    def get_video_option_from_user(self):
+        while True:
+            print("Please choose one of the following options:")
+            print("0. Do not record video of the bees")
+            print("1. Record the bees once a day")
+            print("2. Record the bees every hour")
+
+            choice = input("Enter your choice (0, 1, or 2): ")
+
+            if choice in ['0', '1', '2']:
+                return int(choice)
+            else:
+                print("Invalid choice. Please enter 0, 1, or 2.")
+
     def get_valid_boolean_from_user(self, request):
         while True:
             user_input = input(request).strip().lower()
@@ -55,6 +84,13 @@ class Installer:
         except Exception as e:
             logging.error("Error occurred while replacing strings:", e)
 
+    def clear_crontab(self):
+        try:
+            subprocess.run(["crontab", "-r"], check=True)
+            print("Crontab cleared successfully.")
+        except subprocess.CalledProcessError as e:
+            print("Error:", e)
+
     def add_crontab_entry(self, entry):
         # Get current crontab entries
         process = subprocess.Popen(['crontab', '-l'],
@@ -89,3 +125,33 @@ class Installer:
             logging.info(package + " package successfully installed.")
         except subprocess.CalledProcessError as e:
             logging.error("Error occurred while installing " + package, e)
+
+    def get_base_command(self):
+        return 'cd ~/Desktop/entrance-camera/src/; /usr/bin/python Application.py'
+
+    def schedule_photo_crontab(self, option):
+        if option == 0:
+            return
+        elif option == 1:
+            crontab_string = '30 12 * * * ' + self.get_base_command() + \
+                " " + 'TaskPhoto'
+        elif option == 2:
+            crontab_string = '30 * * * * ' + self.get_base_command() + \
+                " " + 'TaskPhoto'
+        else:
+            print("Invalid option. Please choose 0, 1, or 2.")
+        self.add_crontab_entry(crontab_string)
+
+    def schedule_video_crontab(self, option):
+        if option == 0:
+            return
+        elif option == 1:
+            crontab_string = '0 12 * * * ' + self.get_base_command() + \
+                " " + 'TaskVideo'
+        elif option == 2:
+            crontab_string = '0 * * * * ' + self.get_base_command() + \
+                " " + 'TaskVideo'
+        else:
+            print("Invalid option. Please choose 0, 1, or 2.")
+        self.add_crontab_entry(crontab_string)
+
