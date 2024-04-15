@@ -78,7 +78,7 @@ class Mail:
         msg['Subject'] = subject
 
         # Attach body to the email
-        msg.attach(MIMEText(body, 'plain'))
+        msg.attach(MIMEText(body, 'html'))
 
         # Attach the file
         with open(file_path, 'rb') as attachment:

@@ -30,7 +30,7 @@ Here is your BeeMail! 🙌
 <hr>
 <p style="color: orange;">Brought to you by</p>
 <a href="https://technicallybeekeeping.com" style="text-decoration: none; color: #333;">Technically Beekeeping, LLC</a>
-<p style="color: orange;">Happy Beekeeping!!! 😃</p>
+<p style="color: orange;">Happy Beekeeping! 🌼🍯 Enjoy the journey! 🐝</p>
 
 """
         },
