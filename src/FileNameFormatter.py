@@ -8,7 +8,7 @@ class FileNameFormatter:
         self.hostName = socket.gethostname()
 
     def get_file_name(self):
-        dateStr = dt.datetime.now().strftime('%Y-%m-%d_%H_%M_%S')
+        dateStr = dt.datetime.now().strftime('%Y-%m-%d__%H_%M_%S')
         result = self.hostName + '-' + dateStr
         logging.info("result = " + result)
         return result

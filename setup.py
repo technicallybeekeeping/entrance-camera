@@ -1,9 +1,9 @@
 from src.Installer import Installer
 
 if __name__ == "__main__":
-    installer = Installer()
+    print("Starting Setup ...")
 
-    # installer.check_and_change_directory()
+    installer = Installer()
 
     enabled = installer.get_valid_boolean_from_user(
             "Do you want to enable email support? " +

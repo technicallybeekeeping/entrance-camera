@@ -1,4 +1,5 @@
 import logging
+from logging.handlers import TimedRotatingFileHandler
 import os
 
 config = {
@@ -47,18 +48,30 @@ you'll want to change to this IP address:
 }
 
 # Create the logs directory if it doesn't exist
-# logs_directory = '../logs'
-# if not os.path.exists(logs_directory):
-#     os.makedirs(logs_directory)
+logs_directory = '../logs'
+if not os.path.exists(logs_directory):
+    os.makedirs(logs_directory)
 
-# # Configure logging
-# logging.basicConfig(level=logging.INFO,  # Set the logging level
-#                     format='%(asctime)s - %(levelname)s - %(message)s',
-#                     filename=os.path.join(logs_directory, 'app.log'),
-#                     filemode='a')  # Set the file mode to append
 
-# # Logging settings
+# Configure logging
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
-logging.basicConfig(level=logging.INFO)
-logging.getLogger().setLevel(logging.INFO)
-logger = logging.getLogger(__name__)
+# Create a file handler with timed rotation (daily)
+file_handler = TimedRotatingFileHandler(os.path.join(
+    logs_directory, 'app.log'),
+    when='midnight',
+    interval=1,
+    backupCount=30)
+file_handler.setLevel(logging.INFO)
+file_handler.setFormatter(logging.Formatter(
+    '%(asctime)s - %(levelname)s - %(message)s'))
+logging.getLogger().addHandler(file_handler)
+
+
+# # Create a handler to log to the command line
+# console_handler = logging.StreamHandler(sys.stdout)
+# console_handler.setLevel(logging.INFO)  # Set the logging level for the console handler
+# console_handler.setFormatter(logging.Formatter(
+#     '%(asctime)s - %(levelname)s - %(message)s'))
+# logging.getLogger().addHandler(console_handler)
