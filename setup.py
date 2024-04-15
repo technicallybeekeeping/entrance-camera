@@ -57,6 +57,8 @@ if __name__ == "__main__":
             "sudo -E /usr/bin/python start_web_app.py"
     installer.add_crontab_entry(entry)
 
+    print("---")
+    print("About to install packages, this will take a while ...")
     installer.install_package("schedule")
     installer.install_package("Flask")
     installer.install_postfix_silently()

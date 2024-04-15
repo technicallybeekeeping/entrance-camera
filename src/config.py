@@ -26,6 +26,12 @@ config = {
             "body": """
 Here is your BeeMail! 🙌 
     Current IP address: {ip_address}
+
+<hr>
+<p style="color: orange;">Brought to you by</p>
+<a href="https://technicallybeekeeping.com" style="text-decoration: none; color: #333;">Technically Beekeeping, LLC</a>
+<p style="color: orange;">Happy Beekeeping!!! 😃</p>
+
 """
         },
         "video": {
@@ -33,6 +39,10 @@ Here is your BeeMail! 🙌
             "body": """
 Here is your BeeMail! 🙌 
     Current IP address: {ip_address}
+
+<hr>
+<a href="https://technicallybeekeeping.com" style="color: orange;">Brought to you by</a>
+<a href="https://technicallybeekeeping.com" style="text-decoration: none; color: #333;">Technically Beekeeping, LLC</a>
 """
         },
 
@@ -42,6 +52,10 @@ Here is your BeeMail! 🙌
 The IP Address has changed. If you're using VNC, SSH, SCP, etc,
 you'll want to change to this IP address:
     Current IP address: {ip_address}
+
+<hr>
+<a href="https://technicallybeekeeping.com" style="color: orange;">Brought to you by</a>
+<a href="https://technicallybeekeeping.com" style="text-decoration: none; color: #333;">Technically Beekeeping, LLC</a>
 """
         }
     }
