@@ -49,8 +49,8 @@ if __name__ == "__main__":
     installer.add_crontab_entry(entry)
 
     # Check for IP changes every 10 minutes on the 8s
-    entry = '8-58/10 * * * * ' + installer.get_base_command() + ' TaskCheckIP'
-    installer.add_crontab_entry(entry)
+    # entry = '8-58/10 * * * * ' + installer.get_base_command() + ' TaskCheckIP'
+    # installer.add_crontab_entry(entry)
 
     # Schedule web app server
     entry = "@reboot cd ~/Desktop/entrance-camera/web/; " + \
@@ -59,3 +59,4 @@ if __name__ == "__main__":
 
     installer.install_package("schedule")
     installer.install_package("Flask")
+    installer.install_postfix()

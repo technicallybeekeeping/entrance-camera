@@ -153,8 +153,14 @@ class Installer:
                 " " + 'TaskVideo'
         elif option == 2:
             crontab_string = '0 * * * * ' + self.get_base_command() + \
-                " " + 'TaskVideo'
+                " " + 'TaskVideo' # >> /path/to/logfile.log 2>&1
         else:
             print("Invalid option. Please choose 0, 1, or 2.")
         self.add_crontab_entry(crontab_string)
 
+    def install_postfix(self):
+        try:
+            subprocess.run(['sudo', 'apt-get', 'install', 'postfix'], check=True)
+            print("Postfix installed successfully.")
+        except subprocess.CalledProcessError as e:
+            print("Error installing Postfix:", e)

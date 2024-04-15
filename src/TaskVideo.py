@@ -4,7 +4,7 @@ from Video import Video
 from Mail import Mail
 from picamera2 import Picamera2
 from FileNameFormatter import FileNameFormatter
-from src import Application
+from Application import Application
 
 
 def run():
