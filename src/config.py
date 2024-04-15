@@ -22,42 +22,46 @@ config = {
         "port": 587,
         "server": "smtp.gmail.com",
         "photo": {
-            "subject": "BeeMail - Photo 🐝 📫 📸",
+            "subject": "BeeMail - Photo ({host}) 🐝 📫 📸",
             "body": """
-Here is your BeeMail! 🙌 
-    Current IP address: {ip_address}
-
-<hr>
-<p style="color: orange;">Brought to you by</p>
-<a href="https://technicallybeekeeping.com" style="text-decoration: none; color: #333;">Technically Beekeeping, LLC</a>
-<p style="color: orange;">Happy Beekeeping! 🌼🍯 Enjoy the journey! 🐝</p>
-
+Here is your BeeMail for {host}! 🙌 
+<ul>
+    <li>See more <a href=\"{url}\">photos and videos</a></li>
+    <li>Current IP address: {ip_address}</li>
+</ul>
+<br>
+{footer}
 """
         },
         "video": {
-            "subject": "BeeMail - Video 🐝 📫 🎥",
+            "subject": "BeeMail - Video ({host})🐝 📫 🎥",
             "body": """
-Here is your BeeMail! 🙌 
-    Current IP address: {ip_address}
-
-<hr>
-<a href="https://technicallybeekeeping.com" style="color: orange;">Brought to you by</a>
-<a href="https://technicallybeekeeping.com" style="text-decoration: none; color: #333;">Technically Beekeeping, LLC</a>
+Here is your BeeMail for {host}! 🙌 
+<ul>
+    <li>See more <a href=\"{url}\">photos and videos</a></li>
+    <li>Current IP address: {ip_address}</li>
+</ul>
+<br>
+{footer}
 """
         },
 
         "ip-changed": {
-            "subject": "BeeMail - IP Changed 👀🚨",
+            "subject": "BeeMail - IP Changed ({host}) 👀🚨",
             "body": """
 The IP Address has changed. If you're using VNC, SSH, SCP, etc,
 you'll want to change to this IP address:
-    Current IP address: {ip_address}
-
-<hr>
-<a href="https://technicallybeekeeping.com" style="color: orange;">Brought to you by</a>
-<a href="https://technicallybeekeeping.com" style="text-decoration: none; color: #333;">Technically Beekeeping, LLC</a>
+<ul>
+    <li>Current IP address: {ip_address}</li>
+</ul>
+<br>
+{footer}
 """
-        }
+        },
+    "footer": """<hr>
+<p style="color: orange;">Proudly designed for you by <a href="https://technicallybeekeeping.com" style="text-decoration: none; color: #333;"><strong>Technically Beekeeping, LLC</strong></a><br>
+Happy Beekeeping! 🌼🍯 Enjoy the journey! 🐝</p>
+"""
     }
 }
 

@@ -24,7 +24,8 @@ def run():
                   config["mail"]["app-password"],
                   config["mail"]["recipient"],
                   config["mail"]["port"],
-                  config["mail"]["server"])
+                  config["mail"]["server"],
+                  config["mail"]["footer"])
 
     mailer.send_photo(file_path,
                       config["mail"]["photo"]["subject"],

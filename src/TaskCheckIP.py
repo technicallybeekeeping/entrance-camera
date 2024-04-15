@@ -15,7 +15,8 @@ def run():
                       config["mail"]["app-password"],
                       config["mail"]["recipient"],
                       config["mail"]["port"],
-                      config["mail"]["server"])
+                      config["mail"]["server"],
+                      config["mail"]["footer"])
 
         mailer.send_ip_change(
             config["mail"]["ip-changed"]["subject"],

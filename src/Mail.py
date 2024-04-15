@@ -5,6 +5,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
 import logging
+import socket
 from IPAddress import IPAddress
 import os
 
@@ -16,7 +17,8 @@ class Mail:
                  sender_password: str,
                  recipient_email: str,
                  smtp_port: int,
-                 smtp_server: str
+                 smtp_server: str,
+                 footer: str
                  ):
         self.enabled = enabled
         self.sender_email = sender_email
@@ -24,6 +26,18 @@ class Mail:
         self.recipient_email = recipient_email
         self.smtp_port = smtp_port
         self.smtp_server = smtp_server
+        self.host = socket.gethostname()
+        self.ip_address = IPAddress.get()
+        self.url = 'http://' + self.ip_address
+        self.footer = footer
+
+    def format_elements(self, subject):
+        subject = subject.format(
+            host=self.host,
+            ip_address=self.ip_address,
+            url=self.url,
+            footer=self.footer)
+        return subject
 
     def is_email_disabled(self):
         if (self.enabled != 1):
@@ -37,7 +51,8 @@ class Mail:
         if (self.is_email_disabled() is False):
             return
 
-        body = body.format(ip_address=IPAddress.get())
+        subject = self.format_elements(subject)
+        body = self.format_elements(body)
 
         try:
             with open(file_path, 'rb') as f:
@@ -50,7 +65,7 @@ class Mail:
                 msg['Subject'] = subject
                 msg['From'] = self.sender_email
                 msg['To'] = self.recipient_email
-                html_part = MIMEText(body)
+                html_part = MIMEText(body, 'html')
                 msg.attach(html_part)
                 msg.attach(part)
 
@@ -69,7 +84,8 @@ class Mail:
         if (self.is_email_disabled() is False):
             return
 
-        body = body.format(ip_address=IPAddress.get())
+        subject = self.format_elements(subject)
+        body = self.format_elements(body)
 
         # Create a multipart message
         msg = MIMEMultipart()
@@ -101,14 +117,15 @@ class Mail:
         if (self.is_email_disabled() is False):
             return
 
-        body = body.format(ip_address=IPAddress.get())
+        subject = self.format_elements(subject)
+        body = self.format_elements(body)
 
         try:
             msg = MIMEMultipart()
             msg['Subject'] = subject
             msg['From'] = self.sender_email
             msg['To'] = self.recipient_email
-            html_part = MIMEText(body)
+            html_part = MIMEText(body, 'html')
             msg.attach(html_part)
 
             with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
@@ -131,15 +148,16 @@ if __name__ == "__main__":
                config["mail"]["app-password"],
                config["mail"]["recipient"],
                config["mail"]["port"],
-               config["mail"]["server"])
+               config["mail"]["server"],
+               config["mail"]["footer"])
 
     sut.send_ip_change("Test - " + config["mail"]["ip-changed"]["subject"],
                        "Test - " + config["mail"]["ip-changed"]["body"])
 
-    # sut.send_photo("../tests/artifacts/test-email-photo-1.jpeg",
-    #                "Test - " + config["mail"]["photo"]["subject"],
-    #                "Test - " + config["mail"]["photo"]["body"])
+    sut.send_photo("../tests/artifacts/test-email-photo-1.jpeg",
+                   "Test - " + config["mail"]["photo"]["subject"],
+                   "Test - " + config["mail"]["photo"]["body"])
 
-    # sut.send_video("../tests/artifacts/test-video-1.mp4",
-    #                "Test - " + config["mail"]["video"]["subject"],
-    #                "Test - " + config["mail"]["video"]["body"])
+    sut.send_video("../tests/artifacts/test-video-1.mp4",
+                   "Test - " + config["mail"]["video"]["subject"],
+                   "Test - " + config["mail"]["video"]["body"])
