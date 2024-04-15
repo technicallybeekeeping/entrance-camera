@@ -52,5 +52,10 @@ if __name__ == "__main__":
     entry = '8-58/10 * * * * ' + installer.get_base_command() + ' TaskCheckIP'
     installer.add_crontab_entry(entry)
 
+    # Schedule web app server
+    entry = "@reboot cd ~/Desktop/entrance-camera/web/; " + \
+            "sudo -E /usr/bin/python start_web_app.py"
+    installer.add_crontab_entry(entry)
+
     installer.install_package("schedule")
     installer.install_package("Flask")
