@@ -45,7 +45,7 @@ if __name__ == "__main__":
     installer.add_crontab_entry(entry)
 
     # Purge process nightly
-    entry = '45 12 * * * ' + installer.get_base_command() + ' TaskPurge'
+    entry = '45 0 * * * ' + installer.get_base_command() + ' TaskPurge'
     installer.add_crontab_entry(entry)
 
     # Check for IP changes every 10 minutes on the 8s

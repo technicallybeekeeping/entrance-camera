@@ -9,6 +9,7 @@ class Installer:
 
     def get_photo_option_from_user(self):
         while True:
+            print("---")
             print("Please choose one of the following options:")
             print("0. Do not take still photos of the bees")
             print("1. Photograph the bees once a day")
@@ -20,10 +21,11 @@ class Installer:
                 return int(choice)
             else:
                 print("Invalid choice. Please enter 0, 1, or 2.")
-
+            print("")
 
     def get_video_option_from_user(self):
         while True:
+            print("---")
             print("Please choose one of the following options:")
             print("0. Do not record video of the bees")
             print("1. Record the bees once a day")
@@ -35,6 +37,7 @@ class Installer:
                 return int(choice)
             else:
                 print("Invalid choice. Please enter 0, 1, or 2.")
+            print("")
 
     def get_valid_boolean_from_user(self, request):
         while True:
